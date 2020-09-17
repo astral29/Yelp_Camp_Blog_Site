@@ -1,0 +1,95 @@
+<%- include("partials/header") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h1 class="lead">
+        <h1 style="font-family: cursive; color: #17a2b8">
+          <%=user.firstName%> <% if(follow){ %>
+          <span
+            ><a
+              style="opacity: 0.5; color: #17a2b8"
+              href="/follow/<%=user._id%>"
+              ><i class="fas fa-user-plus"></i></a
+          ></span>
+          <%}%>
+        </h1>
+      </h1>
+      <div class="list-group">
+        <div class="dropdown">
+          <button
+            style="width: 142px; margin: 2px"
+            class="btn btn-info dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Followers
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% user.followers.forEach(function(follower){ %>
+            <li>
+              <a
+                class="dropdown-item"
+                style="text-decoration: none; color: rgb(83, 74, 74)"
+                href="/users/<%=follower._id%>"
+                ><%=follower.username%></a
+              >
+            </li>
+            <% }) %>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button
+            class="btn btn-info dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Campgrounds
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% campgrounds.forEach(function(campground){ %>
+            <li>
+              <a
+                class="dropdown-item"
+                style="text-decoration: none; color: rgb(83, 74, 74)"
+                href="/campgrounds/<%=campground._id%>"
+                ><%=campground.name%></a
+              >
+            </li>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <img
+          class="img-fluid"
+          src="<%= user.avatar%>"
+          alt="profile avatar here"
+        />
+        <div class="caption-full mx-auto px-2 py-3">
+          <a href="mailTo:<%=user.email%>"
+            ><span style="color: grey"><i class="far fa-envelope"> </i></span>
+            <%=user.email%></a
+          >
+        </div>
+        <div class="caption-full mx-auto px-2 py-3">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+          deleniti temporibus repellat nulla assumenda sint ab! Nisi magni saepe
+          similique atque sed, architecto voluptatem aliquid unde excepturi,
+          sunt, perspiciatis tenetur quae harum id inventore maxime impedit enim
+          accusamus quos repudiandae laborum? Soluta quibusdam animi natus ipsam
+          distinctio, sapiente expedita aperiam.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer")%>

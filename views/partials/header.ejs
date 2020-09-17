@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Yelp Camp</title>
+    <script
+      src="https://kit.fontawesome.com/7edb2c0bc7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-primary">
+      <p style="margin-bottom: 0" class="navbar-brand">
+        <a style="color: white; font-size: 2em" class="navbar-brand" href="/"
+          >YelpCamp</a
+        >
+        <a class="navbar-brand" href="/campgrounds"
+          ><span style="color: white; font-size: 2em"
+            ><i class="fas fa-home"></i></span
+        ></a>
+      </p>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if(!currentUser){ %>
+          <li class="nav-item active">
+            <a style="color: white" class="nav-link" href="/login">
+              <span style="color: white" class="sr-only">(current)</span
+              ><span style="color: white"
+                ><i class="fas fa-user-circle"></i
+              ></span>
+              SIGN IN</a
+            >
+          </li>
+          <li class="nav-item active">
+            <a style="color: white" class="nav-link" href="/register">
+              <span style="color: white" class="sr-only">(current)</span><span style="color: white"><i
+                  class="fas fa-sign-in-alt"></i></span>
+              SIGN UP!</a>
+          </li>
+         
+          <%}else { %>
+            
+            <p>
+            <form action="/users" method="GET" class="form-inline">
+              <div class="form-group">
+                <input style="margin: 2px;" class="form-control" type="text" name="search" placeholder="User search...">
+                <input type="submit" value="Search" class="btn btn-light">
+              </div>
+            </form>
+            </p>
+          <li class="dropdown">
+            
+            <a
+              class="btn btn-primary dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><span style="color: white; font-size: 1.5em"
+                ><i class="fas fa-bell"></i></span
+              ><span class="badge badge-light"><%=notifications.length%></span>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#"
+                  >View past notifications</a
+                >
+              </li>
+              <% notifications.forEach(function(notification){ %>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/notifications/<%=notification.id%>"
+                  ><%=notification.username%> created a new campground</a
+                >
+              </li>
+
+              <% }) %>
+
+              <a class="dropdown-item" href="#">Something else here</a>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a
+              style="color: white"
+              class="nav-link"
+              href="/users/<%=currentUser._id%>"
+              ><span style="color: white; font-size: 1.5em"
+                ><i class="fas fa-user-circle"></i
+              ></span>
+              <%=currentUser.username%>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              style="color: white; font-size: 1.5em"
+              class="nav-link"
+              href="/logout"
+              ><span style="font-size: 1rem">Logout</span></a
+            >
+          </li>
+          <%}%>
+
+       
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <% if(error && error.length > 0){ %>
+      <div class="alert alert-danger" role="alert"><%=error%></div>
+      <%}%> <% if(success && success.length > 0){ %>
+      <div class="alert alert-success" role="alert"><%=success%></div>
+      <%}%>
+    </div>
+  

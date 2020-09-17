@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+
+    <title>YelpCamp</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/landing.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <% if(error && error.length > 0){ %>
+      <div class="alert alert-danger" role="alert"><%= error %></div>
+      <% } %> <% if(success && success.length > 0){ %>
+      <div class="alert alert-success" role="alert"><%= success %></div>
+      <% } %>
+    </div>
+
+    <div id="landing-header">
+      <h1>Welcome to YelpCamp!</h1>
+      <a href="/campgrounds" class="btn btn-lg btn-success"
+        >View All Campgrounds</a
+      >
+      <form action="/campgrounds" method="GET" class="form-inline">
+        <div style="margin: 15px auto" class="form-group">
+          <input
+            style="margin: 2px"
+            class="form-control"
+            type="text"
+            name="search"
+            placeholder="Campground search..."
+          />
+          <input type="submit" value="Search" class="btn btn-light" />
+        </div>
+      </form>
+    </div>
+
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </body>
+</html>

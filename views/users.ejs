@@ -1,0 +1,27 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <% if(nomatch.length!==0){ %>
+
+  <div class="row" style="width: 30%; margin: 25px auto">
+    <h2><%=nomatch%></h2>
+  </div>
+  <% } %>
+  <div class="row text-center" style="display: flex; flex-wrap: wrap">
+    <% users.forEach(function(user){ %>
+    <div class="col-md-3 col-sm-6">
+      <div class="card">
+        <img class="img-fluid" src="<%= user.avatar %>" alt="" />
+        <div class="caption">
+          <h4><%= user.username %></h4>
+        </div>
+        <p>
+          <a href="/users/<%= user._id%>" class="btn btn-primary">More Info</a>
+        </p>
+      </div>
+    </div>
+    <%})%>
+  </div>
+</div>
+
+<%- include("partials/footer") %>
